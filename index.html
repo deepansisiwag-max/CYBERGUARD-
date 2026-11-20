@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERGUARD | Login Activity Analyzer</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>🛡 CYBERGUARD</h2>
+        <ul>
+            <li><button class="nav-btn active" data-page="dashboard">Dashboard</button></li>
+            <li><button class="nav-btn" data-page="simulator">Login Simulator</button></li>
+            <li><button class="nav-btn" data-page="threats">Threat Monitoring</button></li>
+            <li><button class="nav-btn" data-page="activity">Login Activity</button></li>
+            <li><button class="nav-btn" data-page="ip">IP Analysis</button></li>
+            <li><button class="nav-btn" data-page="reports">Reports</button></li>
+            <li><button class="nav-btn" data-page="settings">Settings</button></li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <header>
+            <h1>Cyber Threat Monitoring</h1>
+            <p>Security Operations Center | Login Activity Analyzer</p>
+            <div id="liveClock">Loading date and time...</div>
+
+            <button id="refreshButton" onclick="refreshDashboard()">
+                🔄 Refresh Dashboard
+            </button>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active-page">
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Logins</h3>
+                    <h2 id="totalLogins">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Failed Logins</h3>
+                    <h2 id="failedLogins">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Suspicious Activities</h3>
+                    <h2 id="suspicious">0</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Security Status</h3>
+                    <h2 id="securityStatus">SAFE</h2>
+                </div>
+            </div>
+
+            <!-- SECURITY ANALYTICS CHARTS -->
+            <div class="charts-container">
+
+                <section class="monitor chart-box">
+                    <h2>Login Statistics</h2>
+                    <canvas id="loginChart"></canvas>
+                </section>
+
+                <section class="monitor chart-box">
+                    <h2>Failed Login Attempts by IP</h2>
+                    <canvas id="ipChart"></canvas>
+                </section>
+
+            </div>
+
+            <!-- RECENT LOGIN ACTIVITIES -->
+            <section class="monitor">
+                <h2>Recent Login Activities</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>IP Address</th>
+                                <th>Login Status</th>
+                                <th>Activity</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="activityTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECURITY ALERTS -->
+            <section class="alerts">
+                <h2>Security Alerts</h2>
+                <div id="alertBox">Waiting for security analysis...</div>
+            </section>
+
+        </section>
+
+        <!-- LOGIN SIMULATOR -->
+        <section id="simulator" class="page">
+            <section class="monitor">
+                <h2>Login Simulator</h2>
+
+                <p>
+                    Simulate login attempts to test CYBERGUARD
+                    login activity monitoring and threat detection.
+                </p>
+
+                <form id="loginForm">
+
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        maxlength="50"
+                        required
+                    >
+
+                    <label for="loginIP">IP Address</label>
+                    <input
+                        type="text"
+                        id="loginIP"
+                        placeholder="Example: 192.168.1.10"
+                        required
+                    >
+
+                    <label for="loginStatus">Login Status</label>
+                    <select id="loginStatus" required>
+                        <option value="">Select login status</option>
+                        <option value="Success">Success</option>
+                        <option value="Failed">Failed</option>
+                    </select>
+
+                    <button type="submit">Submit Login</button>
+
+                </form>
+
+                <div id="loginMessage" aria-live="polite">
+                    Login simulation results will appear here.
+                </div>
+
+            </section>
+        </section>
+
+        <!-- THREAT MONITORING -->
+        <section id="threats" class="page">
+            <section class="monitor">
+                <h2>Threat Monitoring</h2>
+                <p>Suspicious IP addresses detected from repeated failed login attempts.</p>
+                <div id="threatList">Loading threats...</div>
+            </section>
+        </section>
+
+        <!-- LOGIN ACTIVITY -->
+        <section id="activity" class="page">
+            <section class="monitor">
+                <h2>All Login Activities</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                                <th>Activity</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="allActivityTable"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <!-- IP ANALYSIS -->
+        <section id="ip" class="page">
+            <section class="monitor">
+                <h2>IP Address Analysis</h2>
+                <p>Enter an IP address to check its format and network classification.</p>
+
+                <form id="ipForm">
+                    <input
+                        type="text"
+                        id="ipInput"
+                        placeholder="Example: 192.168.1.1"
+                        required
+                    >
+
+                    <button type="submit">Analyze IP</button>
+                </form>
+
+                <div id="ipResult" aria-live="polite">
+                    Analysis results will appear here.
+                </div>
+            </section>
+        </section>
+
+        <!-- REPORTS -->
+        <section id="reports" class="page">
+            <section class="monitor">
+                <h2>Security Reports</h2>
+
+                <div id="reportContent">
+                    Load dashboard data to view your report.
+                </div>
+
+                <button onclick="generateReport()">Generate Report</button>
+            </section>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="page">
+            <section class="monitor">
+                <h2>System Settings</h2>
+
+                <p><strong>System:</strong> CYBERGUARD</p>
+                <p><strong>Project:</strong> Login Activity Analyzer</p>
+                <p><strong>Backend:</strong> Python Flask</p>
+                <p><strong>Mode:</strong> Educational Login Simulation</p>
+            </section>
+        </section>
+
+    </div>
+
+    <script src="/script.js"></script>
+
+</body>
+</html>

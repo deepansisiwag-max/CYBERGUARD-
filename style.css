@@ -1,0 +1,349 @@
+/* General Settings */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #080f1e;
+    color: white;
+    display: flex;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #111c32;
+    padding: 25px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    color: #00e5ff;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 0;
+    margin-bottom: 12px;
+    background-color: #1b2942;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+
+/* Main Dashboard */
+
+.main {
+    margin-left: 250px;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+header {
+    margin-bottom: 35px;
+}
+
+header h1 {
+    color: #00e5ff;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #9eafc9;
+}
+
+#liveClock {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #9eafc9;
+    font-size: 14px;
+}
+
+#refreshButton {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#refreshButton:hover {
+    background: #0062cc;
+}
+
+
+/* Statistics Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.card {
+    background-color: #14233d;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #263d60;
+}
+
+.card h3 {
+    color: #9eafc9;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    color: #00e5ff;
+    font-size: 30px;
+}
+
+
+/* Login Activity */
+
+.monitor {
+    background-color: #14233d;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.monitor h2,
+.alerts h2 {
+    color: #00e5ff;
+    margin-bottom: 25px;
+}
+
+.monitor p {
+    color: #9eafc9;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #263d60;
+}
+
+th {
+    color: #00e5ff;
+}
+
+
+/* Security Alerts */
+
+.alerts {
+    background-color: #14233d;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+#alertBox {
+    padding: 18px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #172554;
+    border-left: 5px solid #38bdf8;
+    color: #ffffff;
+    transition: 0.3s ease;
+}
+
+#alertBox.danger {
+    background-color: #450a0a;
+    border-left-color: #ef4444;
+    color: #fecaca;
+}
+
+#alertBox.safe {
+    background-color: #052e16;
+    border-left-color: #22c55e;
+    color: #bbf7d0;
+}
+
+
+/* Navigation buttons */
+
+.nav-btn {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    color: white;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background-color: #007bff;
+}
+
+
+/* Page navigation */
+
+.page {
+    display: none;
+}
+
+.page.active-page {
+    display: block;
+}
+
+
+/* Forms and action buttons */
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #9eafc9;
+    font-size: 14px;
+}
+
+input,
+select {
+    padding: 13px;
+    width: 70%;
+    max-width: 400px;
+    background: #080f1e;
+    color: white;
+    border: 1px solid #263d60;
+    border-radius: 6px;
+    margin: 10px 8px 15px 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.page button:not(.nav-btn) {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+}
+
+.page button:not(.nav-btn):hover {
+    background: #0062cc;
+}
+
+#loginMessage {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 8px;
+    background: #1b2942;
+    color: #e2e8f0;
+}
+
+#loginMessage.safe {
+    background-color: #052e16;
+    color: #bbf7d0;
+}
+
+#loginMessage.danger {
+    background-color: #450a0a;
+    color: #fecaca;
+}
+
+#ipResult,
+#threatList,
+#reportContent {
+    margin-top: 20px;
+    padding: 18px;
+    background: #1b2942;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+
+/* Mobile support */
+
+@media (max-width: 800px) {
+    body {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .sidebar li {
+        margin: 0;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 18px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+}
+
+
+/* SECURITY ANALYTICS CHARTS */
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-box {
+    min-width: 0;
+}
+
+.chart-box canvas {
+    width: 100% !important;
+    max-height: 300px;
+}
+
+@media (max-width: 800px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
